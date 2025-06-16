@@ -1,28 +1,31 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    overflow: hidden;
+    overflow: hidden; /* Esto mantiene el efecto de lluvia visible y sin scroll indeseado */
     background-color: #1a1a2e;
-    color: purple;
+    color: purple; /* Este color ahora será el predeterminado si no se sobrescribe */
     text-align: center;
 }
 
 .rain-container {
     position: relative;
-    width: 100vw; 
-    height: 100vh; 
-    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden; /* Evita la barra de desplazamiento horizontal */
+    word-wrap: break-word; /* Rompe palabras largas si es necesario */
+    padding: 20px; /* Añade un poco de espacio alrededor del texto principal */
+    box-sizing: border-box; /* Incluye el padding en el ancho y alto total */
 }
 
+/* Estilos para las palabras que "llueven" */
 .word {
     position: absolute;
     white-space: nowrap;
     opacity: 0;
-    font-size: clamp(1em, 5vw + 0.5em, 2.5em); 
+    font-size: clamp(1em, 5vw + 0.5em, 2.5em);
     font-weight: bold;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     pointer-events: none;
-
     animation-name: ascend;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -55,23 +58,51 @@ body {
 .word-8 { left: 45%; animation-duration: 20s; animation-delay: 13s; color: #CA6BFB;}
 .word-9 { left: 60%; animation-duration: 26s; animation-delay: 7s; color: #CA6BFB;}
 .word-10 { left: 25%; animation-duration: 30s; animation-delay: 9s; color:#B62CFC;}
+
+/* Estilos para el texto principal (tu carta de amor) */
+.rain-container h1,
+.rain-container p {
+    color: #ffffff; /* Color blanco para mayor contraste */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para resaltar */
+    font-weight: normal; /* Asegura un peso de fuente estándar */
+    line-height: 1.6; /* Mejora la legibilidad en párrafos largos */
+    margin-bottom: 10px; /* Espacio entre párrafos */
+    /* Puedes añadir un fondo sutil si deseas más contraste, por ejemplo: */
+    /* background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px; */
+}
+
+.rain-container h1 {
+    font-size: 2em; /* Puedes ajustar el tamaño del título */
+    margin-bottom: 20px;
+}
+
+/* Media queries para adaptar el diseño a diferentes tamaños de pantalla */
 @media (max-width: 768px) {
     .word {
-        font-size: clamp(0.8em, 7vw + 0.5em, 2em); 
+        font-size: clamp(0.8em, 7vw + 0.5em, 2em);
     }
-
-    .word-4 { left: 65%; } 
+    .word-4 { left: 65%; }
     .word-6 { left: 80%; }
-
     .word-10 { animation-duration: 25s; }
+
+    .rain-container h1 {
+        font-size: 1.8em; /* Ajusta el tamaño del título para pantallas pequeñas */
+    }
+    .rain-container p {
+        font-size: 0.95em; /* Ajusta el tamaño del párrafo para pantallas pequeñas */
+    }
 }
 
 @media (max-width: 480px) {
     .word {
-        font-size: clamp(0.7em, 8vw + 0.5em, 1.8em); 
+        font-size: clamp(0.7em, 8vw + 0.5em, 1.8em);
     }
-}
-
-#fond{
-    background-color: red;
+    .rain-container h1 {
+        font-size: 1.6em; /* Ajusta más el título para pantallas muy pequeñas */
+    }
+    .rain-container p {
+        font-size: 0.9em; /* Ajusta más el párrafo para pantallas muy pequeñas */
+    }
 }
